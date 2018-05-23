@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+    <title>3-Directives</title>
+</head>
+<body>
+    <div id="app">
+        <p>v-text: <span v-text="text"></span></p>
+        <p>v-html: <span v-html="html"></span></p>
+        <p>v-show: <span v-show="show">show</span></p>
+
+        <p>v-if: 
+            <span v-if="show">TRUE</span>
+            <span v-else>FALSE</span>
+        </p>
+
+        <p>v-for: 
+            <ul>
+                <li v-for="(value, key) in user">{{ key }} : {{ value }}</li>
+            </ul>
+        </p>
+
+        <p>v-pre: <span v-pre> {{ originText }}</span></p>
+    </div>
+
+    <script>
+        var app = new Vue({
+            el: '#app',
+            data: {
+                text: 'This show by v-text',
+                html: '<b>Some html content</b>',
+                show: true,
+                user: {
+                    name: 'CC',
+                    id: 'A123546',
+                    tel: '0912345678'
+                }
+            }
+        });
+
+        setInterval(function () {
+            app.show = !app.show;
+        }, 500)
+    </script>
+
+</body>
+</html>
