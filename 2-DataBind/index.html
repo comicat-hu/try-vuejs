@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+    <title>2-DataBind</title>
+</head>
+<body>
+    <div id="app">
+        <p v-once>Start Time: {{ now }}</p>
+        <p>Now Time: {{ now }}</p> 
+
+        <hr>
+
+        <p>bind html: <span v-html="hasHtml">{{ hasHtml }}</span></p>
+        <p>show html: {{ hasHtml }}</p>
+
+        <hr>
+
+        <p><a v-bind:href="url" target="_blank">{{ isUpper ? site.toLowerCase() : site }}</a></p>
+        <button v-bind:disabled="isDisable">Click {{ !isDisable }}</button>
+    </div>
+    <script>
+        var app = new Vue({
+            el: '#app',
+            data: {
+                now: (new Date()).toLocaleTimeString(),
+                hasHtml: '<b>Bold Word</b>',
+                site: 'GOOGLE',
+                url: 'https://www.google.com',
+                isDisable: true,
+                isUpper: true
+
+            }
+        });
+
+        var timer = setInterval(function () {
+            var d = new Date();
+            app.now = d.toLocaleTimeString();
+        }, 1000);
+
+        var btnEnable = setInterval(function () {
+            app.isDisable = !app.isDisable;
+            app.isUpper = !app.isUpper;
+        }, 2000);
+    </script>
+</body>
+</html>
